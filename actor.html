@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<head>
+    <title>Actors Assignment</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+        .form-group { margin-bottom: 12px; }
+        label { display: inline-block; width: 140px; font-weight: bold; }
+        input[type="password"], input[type="text"] { padding: 5px; width: 200px; }
+        button { padding: 6px 12px; margin-top: 10px; cursor: pointer; }
+        #result { margin-top: 15px; font-weight: bold; font-size: 1.1em; }
+    </style>
+</head>
+<body>
+
+    <h1>Actors by Yadeni</h1>
+
+    <div class="form-group">
+        <label for="secretActor">Peter Pan:</label>
+        <input type="password" id="secretActor" value="Robin Williams">
+    </div>
+
+    <div class="form-group">
+        <label for="guessActor">Who is the actor:</label>
+        <input type="text" id="guessActor" placeholder="Enter guess here">
+    </div>
+
+    <button onclick="checkActor()">Check the guess</button>
+
+    <div id="result">Correct: 0 | Incorrect: 0</div>
+
+    <script>
+        let correct = 0;
+        let notCorrect = 0;
+
+        function checkActor() {
+            const secret = document.getElementById("secretActor").value;
+            const guess = document.getElementById("guessActor").value;
+
+            if (guess.trim().toLowerCase() === secret.trim().toLowerCase()) {
+                correct++;
+                alert("That's right");
+            } else {
+                notCorrect++;
+                alert("Better luck next time");
+            }
+
+            document.getElementById("result").innerHTML = 
+                `Correct: ${correct} | Incorrect: ${notCorrect}`;
+        }
+    </script>
+
+</body>
