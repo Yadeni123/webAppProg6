@@ -1,5 +1,8 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actors Assignment</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
@@ -8,6 +11,8 @@
         input[type="password"], input[type="text"] { padding: 5px; width: 200px; }
         button { padding: 6px 12px; margin-top: 10px; cursor: pointer; }
         #result { margin-top: 15px; font-weight: bold; font-size: 1.1em; }
+        #imageContainer { margin-top: 20px; }
+        #foodImage { width: 150px; height: 150px; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -28,9 +33,14 @@
 
     <div id="result">Correct: 0 | Incorrect: 0</div>
 
+    <div id="imageContainer">
+        <img id="foodImage" src="pizza.jpg" alt="Food Image" onclick="updatePic()">
+    </div>
+
     <script>
         let correct = 0;
         let notCorrect = 0;
+        let usePic = 1;
 
         function checkActor() {
             const secret = document.getElementById("secretActor").value;
@@ -47,6 +57,26 @@
             document.getElementById("result").innerHTML = 
                 `Correct: ${correct} | Incorrect: ${notCorrect}`;
         }
+
+        function updatePic() {
+            const img = document.getElementById("foodImage");
+
+            switch(usePic) {
+                case 1:
+                    img.src = "burger.jpg";
+                    usePic = 2;
+                    break;
+                case 2:
+                    img.src = "taco.jpg";
+                    usePic = 3;
+                    break;
+                case 3:
+                    img.src = "pizza.jpg";
+                    usePic = 1;
+                    break;
+            }
+        }
     </script>
 
 </body>
+</html>
