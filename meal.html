@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Meal Planner</title>
+</head>
+<body>
+
+    <h2>Yadeni Eba Meal Planner</h2>
+
+    <form>
+        <input type="checkbox" id="cb_breakfast" value="True">
+        <label for="cb_breakfast">Breakfast</label><br>
+
+        <input type="checkbox" id="cb_lunch" value="False">
+        <label for="cb_lunch">Lunch</label><br>
+
+        <input type="checkbox" id="cb_dinner" value="True">
+        <label for="cb_dinner">Dinner</label><br><br>
+
+        <input type="button" value="Meal Plan Choices" onclick="choices()">
+    </form>
+
+    <br>
+    <div id="planResult"></div>
+
+    <script>
+        var my_meal_plan = {};
+
+        function choices() {
+            my_meal_plan = {};
+
+            my_meal_plan.breakfast = document.getElementById("cb_breakfast").checked;
+            my_meal_plan.lunch = document.getElementById("cb_lunch").checked;
+            my_meal_plan.dinner = document.getElementById("cb_dinner").checked;
+
+            document.getElementById("planResult").innerHTML = JSON.stringify(my_meal_plan);
+        }
+    </script>
+
+</body>
+</html>
