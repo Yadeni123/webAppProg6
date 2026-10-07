@@ -6,7 +6,7 @@
 </head>
 <body>
 
-    <h2>Your Name sales computation</h2>
+    <h2>Yadeni Eba sales computation</h2>
 
     <form>
         <label for="numberItems">Enter number items:</label>
@@ -18,8 +18,8 @@
         <label for="numberForDiscount">Enter number to get discount:</label>
         <input type="number" id="numberForDiscount" value="10"><br><br>
 
-        <label for="DiscountRate">Enter the discount rate:</label>
-        <input type="number" id="DiscountRate" value="0.15" step="0.01"><br><br>
+        <label for="discountRate">Enter the discount rate:</label>
+        <input type="number" id="discountRate" value="0.15" step="0.01"><br><br>
 
         <input type="button" value="Show costs" onclick="doDiscount()">
     </form>
@@ -27,11 +27,28 @@
     <br>
     <div id="result"></div>
 
+    <hr>
+
+    <h3>Operations Choice</h3>
+    <form>
+        <input type="radio" id="mul" name="operation" value="mul" onclick="chooseOp()">
+        <label for="mul">product</label><br>
+
+        <input type="radio" id="add" name="operation" value="add" onclick="chooseOp()">
+        <label for="add">sum</label><br>
+
+        <input type="radio" id="div" name="operation" value="div" onclick="chooseOp()">
+        <label for="div">divide</label>
+    </form>
+
+    <br>
+    <div id="opResult"></div>
+
     <script>
         function doDiscount() {
             let number = Number(document.getElementById("numberItems").value);
             let cost = Number(document.getElementById("itemCost").value);
-            let discountRate = Number(document.getElementById("DiscountRate").value);
+            let discountRate = Number(document.getElementById("discountRate").value);
             let discountAt = Number(document.getElementById("numberForDiscount").value);
 
             let costs = "";
@@ -53,6 +70,25 @@
 
             document.getElementById("result").innerHTML = "Costs are: " + costs;
         }
+
+        function chooseOp() {
+            let count = Number(document.getElementById("numberItems").value);
+            let discountAt = Number(document.getElementById("numberForDiscount").value);
+            let resultElement = document.getElementById("opResult");
+            let val = 0;
+
+            if (document.getElementById("mul").checked) {
+                val = count * discountAt;
+                resultElement.innerHTML = `${count} times ${discountAt} is ${val}`;
+            } else if (document.getElementById("add").checked) {
+                val = count + discountAt;
+                resultElement.innerHTML = `${count} plus ${discountAt} is ${val}`;
+            } else if (document.getElementById("div").checked) {
+                val = count / discountAt;
+                resultElement.innerHTML = `${count} divided by ${discountAt} is ${val}`;
+            }
+        }
     </script>
+
 </body>
 </html>
