@@ -6,7 +6,7 @@
 </head>
 <body>
 
-    <h2>Yadeni Eba Meal Planner</h2>
+    <h2>Yadeni Eba meal planner</h2>
 
     <form>
         <input type="checkbox" id="cb_breakfast" value="True">
@@ -21,6 +21,18 @@
         <input type="button" value="Meal Plan Choices" onclick="choices()">
     </form>
 
+    <br><hr><br>
+
+    <form>
+        <label for="cuisine">Enter cuisine type:</label>
+        <input type="text" id="cuisine" value="Italian"><br><br>
+
+        <label for="beverage">Enter beverage choice:</label>
+        <input type="text" id="beverage" value="water"><br><br>
+
+        <input type="button" value="Update the meal plan" onclick="updateMeal()">
+    </form>
+
     <br>
     <div id="planResult"></div>
 
@@ -29,10 +41,19 @@
 
         function choices() {
             my_meal_plan = {};
-
             my_meal_plan.breakfast = document.getElementById("cb_breakfast").checked;
             my_meal_plan.lunch = document.getElementById("cb_lunch").checked;
             my_meal_plan.dinner = document.getElementById("cb_dinner").checked;
+
+            document.getElementById("planResult").innerHTML = JSON.stringify(my_meal_plan);
+        }
+
+        function updateMeal() {
+            let cuisineVal = document.getElementById("cuisine").value;
+            let beverageVal = document.getElementById("beverage").value;
+
+            my_meal_plan["cuisine"] = cuisineVal;
+            my_meal_plan["beverage"] = beverageVal;
 
             document.getElementById("planResult").innerHTML = JSON.stringify(my_meal_plan);
         }
