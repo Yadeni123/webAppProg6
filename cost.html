@@ -2,47 +2,61 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sales Cost Computation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-light p-4">
 
-    <h2>Yadeni Eba Sales Computation</h2>
+    <div class="container bg-white p-4 rounded shadow-sm" style="max-width: 600px;">
+        <h2 class="mb-4 text-primary">Yadeni Eba sales computation</h2>
 
-    <form>
-        <label for="numberItems">Enter number items:</label>
-        <input type="number" id="numberItems" value="1"><br><br>
+        <form class="mb-4">
+            <div class="mb-3">
+                <label for="numberItems" class="form-label">Enter number items:</label>
+                <input type="number" id="numberItems" class="form-control" value="1">
+            </div>
 
-        <label for="itemCost">Enter the cost of one item:</label>
-        <input type="number" id="itemCost" value="20.0" step="0.1"><br><br>
+            <div class="mb-3">
+                <label for="itemCost" class="form-label">Enter the cost of one item:</label>
+                <input type="number" id="itemCost" class="form-control" value="20.0" step="0.1">
+            </div>
 
-        <label for="numberForDiscount">Enter number to get discount:</label>
-        <input type="number" id="numberForDiscount" value="10"><br><br>
+            <div class="mb-3">
+                <label for="numberForDiscount" class="form-label">Enter number to get discount:</label>
+                <input type="number" id="numberForDiscount" class="form-control" value="10">
+            </div>
 
-        <label for="discountRate">Enter the discount rate:</label>
-        <input type="number" id="discountRate" value="0.15" step="0.01"><br><br>
+            <div class="mb-3">
+                <label for="discountRate" class="form-label">Enter the discount rate:</label>
+                <input type="number" id="discountRate" class="form-control" value="0.15" step="0.01">
+            </div>
 
-        <input type="button" value="Show costs" onclick="doDiscount()">
-    </form>
+            <input type="button" class="btn btn-primary" value="Show costs" onclick="doDiscount()">
+        </form>
 
-    <br>
-    <div id="result"></div>
+        <div id="result" class="alert alert-secondary"></div>
 
-    <hr>
+        <hr class="my-4">
 
-    <h3>Operations Choice</h3>
-    <form>
-        <input type="radio" id="mul" name="operation" value="mul" onclick="chooseOp()">
-        <label for="mul">product</label><br>
+        <h4 class="mb-3">Operations Choice</h4>
+        <form class="mb-3">
+            <div class="form-check">
+                <input type="radio" id="mul" name="operation" value="mul" class="form-check-input" onclick="chooseOp()">
+                <label for="mul" class="form-check-label">product</label>
+            </div>
+            <div class="form-check">
+                <input type="radio" id="add" name="operation" value="add" class="form-check-input" onclick="chooseOp()">
+                <label for="add" class="form-check-label">sum</label>
+            </div>
+            <div class="form-check">
+                <input type="radio" id="div" name="operation" value="div" class="form-check-input" onclick="chooseOp()">
+                <label for="div" class="form-check-label">divide</label>
+            </div>
+        </form>
 
-        <input type="radio" id="add" name="operation" value="add" onclick="chooseOp()">
-        <label for="add">sum</label><br>
-
-        <input type="radio" id="div" name="operation" value="div" onclick="chooseOp()">
-        <label for="div">divide</label>
-    </form>
-
-    <br>
-    <div id="opResult"></div>
+        <div id="opResult" class="alert alert-info"></div>
+    </div>
 
     <script>
         function doDiscount() {
@@ -75,20 +89,18 @@
             let count = Number(document.getElementById("numberItems").value);
             let discountAt = Number(document.getElementById("numberForDiscount").value);
             let resultElement = document.getElementById("opResult");
-            let val = 0;
 
             if (document.getElementById("mul").checked) {
-                val = count * discountAt;
+                let val = count * discountAt;
                 resultElement.innerHTML = `${count} times ${discountAt} is ${val}`;
             } else if (document.getElementById("add").checked) {
-                val = count + discountAt;
+                let val = count + discountAt;
                 resultElement.innerHTML = `${count} plus ${discountAt} is ${val}`;
             } else if (document.getElementById("div").checked) {
-                val = count / discountAt;
+                let val = count / discountAt;
                 resultElement.innerHTML = `${count} divided by ${discountAt} is ${val}`;
             }
         }
     </script>
-
 </body>
 </html>

@@ -3,80 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actors Assignment</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
-        .form-group { margin-bottom: 12px; }
-        label { display: inline-block; width: 140px; font-weight: bold; }
-        input[type="password"], input[type="text"] { padding: 5px; width: 200px; }
-        button { padding: 6px 12px; margin-top: 10px; cursor: pointer; }
-        #result { margin-top: 15px; font-weight: bold; font-size: 1.1em; }
-        #imageContainer { margin-top: 20px; }
-        #foodImage { width: 150px; height: 150px; cursor: pointer; }
-    </style>
+    <title>Actor Guessing Game</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-light p-4">
 
-    <h1>Actors by Yadeni</h1>
+    <div class="container bg-white p-4 rounded shadow-sm" style="max-width: 600px;">
+        <h2 class="mb-4 text-primary">Actors by Yadeni Eba</h2>
 
-    <div class="form-group">
-        <label for="secretActor">Peter Pan:</label>
-        <input type="password" id="secretActor" value="Robin Williams">
-    </div>
+        <form class="mb-3">
+            <div class="mb-3">
+                <label for="actor_name" class="form-label">Enter the secret actor name:</label>
+                <input type="password" id="actor_name" class="form-control" value="Rihanna">
+            </div>
 
-    <div class="form-group">
-        <label for="guessActor">Who is the actor:</label>
-        <input type="text" id="guessActor" placeholder="Enter guess here">
-    </div>
+            <div class="mb-3">
+                <label for="guess" class="form-label">Guess the actor:</label>
+                <input type="text" id="guess" class="form-control">
+            </div>
 
-    <button onclick="checkActor()">Check the guess</button>
+            <input type="button" id="checkBtn" value="Check the guess" class="btn btn-primary" onclick="checkActor()">
+        </form>
 
-    <div id="result">Correct: 0 | Incorrect: 0</div>
-
-    <div id="imageContainer">
-        <img id="foodImage" src="pizza.jpg" alt="Food Image" onclick="updatePic()">
+        <div id="result" class="alert alert-info" role="alert">
+            Correct: 0 | Wrong: 0
+        </div>
     </div>
 
     <script>
-        let correct = 0;
-        let notCorrect = 0;
-        let usePic = 1;
+        var use_star = 0;
+        var correct = 0;
+        var wrong = 0;
 
         function checkActor() {
-            const secret = document.getElementById("secretActor").value;
-            const guess = document.getElementById("guessActor").value;
+            let secret = document.getElementById("actor_name").value;
+            let guessVal = document.getElementById("guess").value;
 
-            if (guess.trim().toLowerCase() === secret.trim().toLowerCase()) {
+            if (guessVal === secret) {
                 correct++;
-                alert("That's right");
+                alert("You got it right!");
             } else {
-                notCorrect++;
-                alert("Better luck next time");
+                wrong++;
+                alert("Wrong guess!");
             }
 
-            document.getElementById("result").innerHTML = 
-                `Correct: ${correct} | Incorrect: ${notCorrect}`;
+            document.getElementById("result").innerHTML = `Correct: ${correct} | Wrong: ${wrong}`;
+
+            if (wrong > 10) {
+                document.getElementById("checkBtn").onclick = tooManyGuesses;
+            }
         }
 
-        function updatePic() {
-            const img = document.getElementById("foodImage");
-
-            switch(usePic) {
-                case 1:
-                    img.src = "burger.jpg";
-                    usePic = 2;
-                    break;
-                case 2:
-                    img.src = "taco.jpg";
-                    usePic = 3;
-                    break;
-                case 3:
-                    img.src = "pizza.jpg";
-                    usePic = 1;
-                    break;
-            }
+        function tooManyGuesses() {
+            alert("Sorry, too many wrong guesses.");
         }
     </script>
-
 </body>
 </html>
